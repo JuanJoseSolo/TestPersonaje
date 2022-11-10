@@ -1,23 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
+
 
 public class Script : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Slider test;
+
+    SkinnedMeshRenderer gesture;
+    float time = 300;
+    float timeCnt = 0;
+    bool flag = false;
+
     void Start()
     {
-        test = GameObject.Find("Casual1_Body").GetComponent<Slider>();
-        //test.value = 0;
     }
 
     // Update is called once per frame
+    // m_BlendShapeWeights.Array.data[23]
     void Update()
     {
-        //test.value = 100;
-        Debug.Log("Resultado = " + test); 
+        time -= Time.deltaTime * 100;
+        if(time < 0)
+        {
+            flag = true;
+            time = 300;
+            timeCnt += 1;
+            GameObject.Find("Casual1_Body").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 99); // smile
+            GameObject.Find("Casual1_Body").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(23, 99);
+            Debug.Log($"timelap --> {timeCnt}");
+        }
+
+        if(time< 100 & flag == true)
+        {
+            flag = false;
+            GameObject.Find("Casual1_Body").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 0); //neutro
+            GameObject.Find("Casual1_Body").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(23, 0);
+        }
+
+
     }
 }
