@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using EmotionalAppraisal;
+using EmotionRegulation;
 
 
 public class Script : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    // Test
     SkinnedMeshRenderer gesture;
     float time = 300;
     float timeCnt = 0;
@@ -17,7 +19,6 @@ public class Script : MonoBehaviour
     {
     }
 
-    // Update is called once per frame
     // m_BlendShapeWeights.Array.data[23]
     void Update()
     {
@@ -35,10 +36,9 @@ public class Script : MonoBehaviour
         if(time< 100 & flag == true)
         {
             flag = false;
-            GameObject.Find("Casual1_Body").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 0); //neutro
+            GameObject.Find("Casual1_Body").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 0); // neutro
             GameObject.Find("Casual1_Body").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(23, 0);
         }
-
 
     }
 }
